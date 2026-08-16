@@ -10,9 +10,14 @@ const corsPolicy = cors()
 
 app.use(corsPolicy)
 
+app.use("/", indexRouter)
 app.use("/authors", authorRouter)
 app.use("/books", bookRouter)
-app.use("/", indexRouter)
+
+app.use((error, req, res, next) => {
+    console.error(error)
+    res.status(error.statusCode || 500).send(error.message)
+})
 
 const PORT = 3000
 

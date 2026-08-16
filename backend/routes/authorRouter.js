@@ -1,4 +1,5 @@
 import express from "express"
+import getAuthorById from "../controllers/authController.js"
 
 const authorRouter = express.Router()
 
@@ -6,9 +7,6 @@ authorRouter.get("/", (req, res) => {
     res.send("All authors")
 })
 
-authorRouter.get("/:authorId", (req, res) => {
-    const { authorId } = req.params
-    res.send(`Author Id: ${authorId}`)
-})
+authorRouter.get("/:authorId", getAuthorById)
 
 export default authorRouter
